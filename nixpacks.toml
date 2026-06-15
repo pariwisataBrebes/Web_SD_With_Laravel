@@ -11,7 +11,7 @@ nixPkgs = [
     "php82Extensions.curl",
     "php82Extensions.zip",
     "php82Extensions.gd",
-    "composer_2"
+    "php82Packages.composer"
 ]
 
 [phases.install]
@@ -24,4 +24,4 @@ cmds = [
 ]
 
 [start]
-cmd = "php artisan migrate --force && php artisan storage:link --quiet; php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
+cmd = "php artisan config:cache && php artisan migrate --force && php artisan storage:link --quiet && php artisan serve --host=0.0.0.0 --port=$PORT"
